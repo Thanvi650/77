@@ -1,0 +1,161 @@
+<html>
+<head>
+  <title>Form</title>
+  <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+
+<script>
+  const handleName = () => {
+    const name = document.getElementById("name").value;
+    const p = document.getElementById("1");
+
+    if (name.length < 3) {
+      p.innerText = "Name must be at least 3 letters";
+      return false;
+    }
+
+    for (let ch of name) {
+      if (!((ch >= "A" && ch <= "Z") || (ch >= "a" && ch <= "z"))) {
+        p.innerText = "No numbers or special characters allowed";
+        return false;
+      }
+    }
+    p.innerText = "";
+    return true;
+  };
+
+  const handleEmail = () => {
+    const email = document.getElementById("email").value;
+    const p = document.getElementById("2");
+
+    if (email === "") {
+      p.innerText = "Email is required";
+      return false;
+    }
+
+    const parts = email.split("@");
+    if (parts.length !== 2 || !parts[1].includes(".")) {
+      p.innerText = "Enter a valid email";
+      return false;
+    }
+
+    p.innerText = "";
+    return true;
+  };
+
+  const validatePassword = (password) => {
+    return password.length>=8;
+  };
+
+  const handlePass = () => {
+    const password = document.getElementById("password").value;
+    const p = document.getElementById("3");
+
+    if (!validatePassword(password)) {
+      p.innerText =
+        "Password must be 8+ chars with upper, lower, number & special";
+      return false;
+    }
+
+    p.innerText = "";
+    return true;
+  };
+
+  const handleCpass = () => {
+    const password = document.getElementById("password").value;
+    const confirm = document.getElementById("confirmPassword").value;
+    const p = document.getElementById("4");
+
+    if (confirm === "") {
+      p.innerText = "Confirm your password";
+      return false;
+    }
+
+    if (password !== confirm) {
+      p.innerText = "Passwords do not match";
+      return false;
+    }
+
+    p.innerText = "";
+    return true;
+  };
+
+  const handlePhone = () => {
+    const phone = document.getElementById("phone").value;
+    const p = document.getElementById("5");
+
+    if (phone.length !== 10) {
+      p.innerText = "Phone number must be 10 digits";
+      return false;
+    }
+
+    for (let ch of phone) {
+      if (ch < "0" || ch > "9") {
+        p.innerText = "Only digits allowed";
+        return false;
+      }
+    }
+
+    p.innerText = "";
+    return true;
+  };
+
+  const handleSubmit = () => {
+    const valid =
+      handleName() &&
+      handleEmail() &&
+      handlePass() &&
+      handleCpass() &&
+      handlePhone();
+
+    if (!valid) {
+      alert("Please fill all details correctly");
+      return false;
+    }
+
+    alert("Submitted successfully");
+    return true;
+  };
+</script>
+
+<div class="form">
+  <form onsubmit="return handleSubmit()">
+
+    <label>User Name</label>
+    <input type="text" id="name" onchange="handleName()" />
+    <p id="1"></p>
+
+    <label>Email</label>
+    <input type="email" id="email" onchange="handleEmail()" />
+    <p id="2"></p>
+
+    <label>Password</label>
+    <input type="password" id="password" onchange="handlePass()" />
+    <p id="3"></p>
+
+    <label>Confirm Password</label>
+    <input type="password" id="confirmPassword" onchange="handleCpass()" />
+    <p id="4"></p>
+
+    <label>Phone Number</label>
+    <input type="text" id="phone" onchange="handlePhone()" />
+    <p id="5"></p>
+
+   <label class="gender-label">Gender:</label><br>
+<label>
+  <input type="radio" name="gender" value="male" required> Male
+</label><br>
+<label>
+  <input type="radio" name="gender" value="female"> Female
+</label><br><br>
+
+    <input type="checkbox" required> Terms and Conditions <br><br>
+
+    <input type="submit" value="Submit">
+  </form>
+</div>
+
+</body>
+</html>

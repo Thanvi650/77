@@ -1,0 +1,36 @@
+body {
+  margin: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(236, 169, 209);
+  font-family: Arial, sans-serif;
+}
+
+.form {
+  width: 350px;
+  padding: 30px;
+  border: 2px solid white;
+  background-color: white;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  width: 100%;
+  padding: 6px;
+  margin-bottom: 5px;
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+  width: auto;
+  margin-right: 6px;
+}
+
+p {
+  color: rgb(225, 17, 17);
+  font-size: 12px;
+  margin: 0 0 10px 0;
+}
